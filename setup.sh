@@ -84,11 +84,11 @@ else
     curl -LsSf https://astral.sh/uv/install.sh | sh
     
     # Add uv to PATH for current session and future sessions
-    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
     
     # Check if already in .zshrc to avoid duplicates
-    if ! grep -q 'export PATH="$HOME/.cargo/bin:$PATH"' ~/.zshrc 2>/dev/null; then
-        echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
+    if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' ~/.zshrc 2>/dev/null; then
+        echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
         echo "✅ Added uv to ~/.zshrc"
     fi
 fi
@@ -99,8 +99,8 @@ echo "🔍 Installing Ruff..."
 if command_exists ruff; then
     echo "✅ Ruff already installed: $(ruff --version)"
 else
-    echo "Installing Ruff via Homebrew..."
-    brew install ruff
+    echo "Installing Ruff"
+    uv tool install ruff@latest
 fi
 
 # Install Python dependencies
